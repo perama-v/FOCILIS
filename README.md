@@ -7,6 +7,48 @@ Fork-choice enforced Inclusion Lists (FOCIL) is extended to have IL members prod
 ILs per member, members publish an IL ID in the preceding slot. The IDs are used as nullifiers. The IDs are registered in the preceding block using the same fork choice rule that FOCIL uses.
 
 See FOCIL: https://eips.ethereum.org/EIPS/eip-7805
+```mermaid
+graph TB
+
+%% Division P
+subgraph P [slot N-1]
+    direction TB
+    T1[Slot N IL committe makes IDs]
+    V1[Validators]
+    V1 --"observe"--> T1
+end
+
+%% Box on the first dotted line (simulated placement)
+Box1[Box1]
+
+%% Division Q
+subgraph Q [slot N]
+    direction TB
+    T2[IL IDs]
+    P1[Slot N committee makes ILs with ZKPs]
+    V2[Validators]
+    V2 --"remember"--> T2
+    V2 --"observe"--> P1
+end
+
+%% Box on the second dotted line (simulated placement)
+Box2[Box2]
+
+%% Division R
+subgraph R [slot N+1]
+    direction TB
+    P2[ILs]
+    V3[Validators]
+    V3 --"remember"--> P2
+end
+
+%% Connections across divisions
+T1 --"IDs go into"--> Box1[Block A]
+T2 --"compare with"--> Box1
+P1 --"ILs go into"--> Box2[Block B]
+P2 --"compare with"--> Box2
+
+```
 ### Motivation
 
 This is an extension to the Fork-choice enforced Inclusion Lists (FOCIL) protocol.
