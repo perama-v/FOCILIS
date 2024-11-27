@@ -166,7 +166,7 @@ Protocols that use deterministic nullifiers may be vulnerable in post-quantum se
 
 ### Fork choice stability
 
-Long reorgs in which the builder has not retained the IL IDs or the ILs. Their block will not be voted on by the builder. However, just like in FOCIL an RPC endpoint could be added to request missing IL IDs (by IL committee index) or ILs (by IL ID) from peers at=10s.
+Long reorgs in which the builder has not retained the IL IDs or the ILs. Their block will not be voted on by the builder. However, just like in FOCIL an RPC endpoint could be added to request missing IL IDs (by IL committee index) or ILs (by sending a list of IL-hashes they have and asking for ones not in the list) from peers at=10s.
 
 ### Validator computational burden
 
@@ -178,6 +178,18 @@ The validators must be able to verify 16 zero knowledge proofs within 3 seconds.
 
 Validators must gossip 16 * 8kb lists with plain FOCIL. Larger messages impair the ability for lists to propagate. With FOCILIS the 8kb lists have an additional estimated ~100bytes, which is an insignificant increase.
 
+### Vote buying
+
+Committee members contribute ILs volutarily and with no reward. However, an IL represents a valuable good (guaranteed transaction inclusion). An actor can pay an IL committee member to put a transaction in their IL. Upon block production,
+payment to the IL member can be released, or otherwise lose a bond held in a smart contract. This can be thought of as a kind of preconfirmation mechanism. As such, a marketplace for preconfirmations could arise
+where IL members compete for the opportunity.
+
+This applies to FOCIL and FOCILIS. In plain FOCIL, the IL signatures can be used. In FOCILIs, the IL member could reveal their secret input, showing which IL they submitted at the expense of losing this privacy.
+
+If needed, the semaphore component of FOCILIS could be replaced with a MACI-like (minimial anti-collusion infrastructure) construction which prevents vote buying through the absence of receipts. This may be benificial in the two following scenarios:
+- FOCIL: The IL-preconf marketplace may completely displace the priority fee market from the builder to the IL committee, causing increased complexity or destabilisation to an existing stable MEV market dynamic.
+- FOCILIS: The IL-preconf marketplace exists and is used by most of the IL committee, effectively making ILs attibutable again.
+
 ## Reading
 
 https://blog.aayushg.com/nullifier/
@@ -185,3 +197,7 @@ https://blog.aayushg.com/nullifier/
 https://ethresear.ch/t/proof-of-validator-a-simple-anonymous-credential-scheme-for-ethereums-dht/16454
 
 https://docs.semaphore.pse.dev/
+
+https://docs.zkproof.org/pages/standards/accepted-workshop3/proposal-semaphore.pdf
+
+https://medium.com/coinmonks/to-mixers-and-beyond-presenting-semaphore-a-privacy-gadget-built-on-ethereum-4c8b00857c9b
