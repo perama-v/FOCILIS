@@ -185,15 +185,15 @@ Validators must gossip 16 * 8kb lists with plain FOCIL. Larger messages impair t
 
 ### Vote buying
 
-Committee members contribute ILs volutarily and with no reward. However, an IL represents a valuable good (guaranteed transaction inclusion). An actor can pay an IL committee member to put a transaction in their IL. Upon block production,
+Committee members contribute ILs voluntarily and with no reward. However, an IL represents a valuable good (guaranteed transaction inclusion). An actor can pay an IL committee member to put a transaction in their IL. Upon block production,
 payment to the IL member can be released, or otherwise lose a bond held in a smart contract. This can be thought of as a kind of preconfirmation mechanism. As such, a marketplace for preconfirmations could arise
 where IL members compete for the opportunity.
 
 This applies to FOCIL and FOCILIS. In plain FOCIL, the IL signatures can be used. In FOCILIs, the IL member could reveal their secret input, showing which IL they submitted at the expense of losing this privacy.
 
-If needed, the semaphore component of FOCILIS could be replaced with a MACI-like (minimial anti-collusion infrastructure) construction which prevents vote buying through the absence of receipts. This may be benificial in the two following scenarios:
+If needed, the semaphore component of FOCILIS could be replaced with a MACI-like (minimal anti-collusion infrastructure) construction which prevents vote buying through the absence of receipts. This may be beneficial in the two following scenarios:
 - FOCIL: The IL-preconf marketplace may completely displace the priority fee market from the builder to the IL committee, causing increased complexity or destabilisation to an existing stable MEV market dynamic.
-- FOCILIS: The IL-preconf marketplace exists and is used by most of the IL committee, effectively making ILs attibutable again.
+- FOCILIS: The IL-preconf marketplace exists and is used by most of the IL committee, effectively making ILs attributable again.
 
 ## Reading
 
