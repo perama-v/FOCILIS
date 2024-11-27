@@ -157,6 +157,11 @@ Proofs for FOCILIS have 16 members.
 
 https://docs.semaphore.pse.dev/benchmarks
 
+## Future considerations
+
+### Recursion in a SNARKed consensus
+
+In the event that the consensus fork choice rule is SNARKified such as in a beam chain upgrade, the presence of ILs being check by SNARKs implies recursion. The consensus SNARK must verify the IL SNARKs. So, any SNARK chosen for the ILs must be made with this in mind (be recursion-friendly), so as to not make the consensus SNARK proving time too slow.
 
 ## Security
 
