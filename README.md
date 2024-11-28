@@ -161,7 +161,11 @@ https://docs.semaphore.pse.dev/benchmarks
 
 ### Recursion in a SNARKed consensus
 
-In the event that the consensus fork choice rule is SNARKified such as in a beam chain upgrade, the presence of ILs being check by SNARKs implies recursion. The consensus SNARK must verify the IL SNARKs. So, any SNARK chosen for the ILs must be made with this in mind (be recursion-friendly), so as to not make the consensus SNARK proving time too slow.
+In the event that the consensus fork choice rule is SNARKified such as in a beam chain upgrade, the presence of ILs being checked by SNARKs implies recursion. The consensus SNARK must verify the IL SNARKs. So, any SNARK chosen for the ILs must be made with this in mind (be recursion-friendly), so as to not make the consensus SNARK proving time too slow.
+
+As Ethereum does not yet have concrete specifications consensus SNARKification (including which signature scheme might replace BLS), recursion-friendliness is not knowable at present. ILs are a benefit and can be included first and updated later. This could be FOCIL now, FOCILIS later. Or FOCILIS-beacon (practical BLS-based SNARK) now and FOCILIS-beam (post quantum, recursion friendly SNARK) later.
+
+As FOCIL is fully specified and could be included in a near-future fork FOCIL now, FOCILIS later seems like a good incremental approach. That brings immediate benefit to censorship resistance and does not preclude future improvements to IL committee member indistinguishability.
 
 ## Security
 
